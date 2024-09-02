@@ -11,20 +11,23 @@ import { Badge } from "@/components/ui/badge"
 export function LandingPage() {
     return (
         (<div
-            className="flex flex-col items-center justify-center min-h-screen bg-white">
+            className="flex flex-col items-center justify-center min-h-screen bg-white overflow-hidden">
 
             {/* left column */}
             <div
                 className="container grid grid-cols-1 md:grid-cols-2 gap-8 py-12 md:py-24">
                 <div className="flex flex-col">
-                    <header className="flex flex-col mb-8">
-                        <img src="/placeholder.svg" alt="LlamaTutor" className="w-24 h-24 mb-4" />
-                        <div
-                            className="flex items-center px-4 py-2 space-x-2 text-sm font-medium text-gray-600 bg-blue-500 rounded-full">
-                            <SparkleIcon className="w-4 h-4 text-white" />
-                            <span className="text-white">Powered by Llama 3.1 and Together AI</span>
+                    <header className="flex flex-col mb-5">
+                        <div className="inline-flex items-center">
+                            <img src="/logo.png" className="w-6" />
+                            <span className="ml-3 text-md font-bold text-orange-500">GemmaTutor</span>
                         </div>
                     </header>
+                    <Badge
+                        className="size-fit	flex items-center px-4 py-1 rounded-full mb-2 mt-7 bg-orange-500 space-x-2">
+                        <SparkleIcon className="w-4 h-4 text-white" />
+                        <span className="text-white">Powered by Gemma-2 27B and Nvidia NIM</span>
+                    </Badge>
                     <main className="flex flex-col">
                         <h1 className="text-4xl font-bold">
                             Your Personal <span className="text-primary">Tutor</span>
@@ -45,33 +48,33 @@ export function LandingPage() {
                                     <SelectItem value="college">College</SelectItem>
                                 </SelectContent>
                             </Select>
-                            <Button className="ml-2">
+                            <Button className="ml-2 bg-orange-500">
                                 <ArrowRightIcon className="h-5 w-5" />
                             </Button>
                         </div>
                         <div
                             className="flex flex-wrap w-full mt-8 space-x-2">
-                            <Badge variant="outline" className="flex items-center px-4 py-2 rounded-lg">
-                                <ShoppingBasketIcon className="mr-2 h-4 w-4" />
+                            <Badge variant="outline" className="flex items-center px-4 py-2 rounded-lg cursor-pointer">
+                                <ShoppingBasketIcon className="mr-2 h-4 w-4 text-orange-500" />
                                 Basketball
                             </Badge>
-                            <Badge variant="outline" className="flex items-center px-4 py-2 rounded-lg">
-                                <BrainIcon className="mr-2 h-4 w-4" />
+                            <Badge variant="outline" className="flex items-center px-4 py-2 rounded-lg cursor-pointer">
+                                <BrainIcon className="mr-2 h-4 w-4 text-orange-500" />
                                 Machine Learning
                             </Badge>
-                            <Badge variant="outline" className="flex items-center px-4 py-2 rounded-lg">
-                                <DollarSignIcon className="mr-2 h-4 w-4" />
+                            <Badge variant="outline" className="flex items-center px-4 py-2 rounded-lg cursor-pointer">
+                                <DollarSignIcon className="mr-2 h-4 w-4 text-orange-500" />
                                 Personal Finance
                             </Badge>
-                            <Badge variant="outline" className="flex items-center px-4 py-2 rounded-lg">
-                                <FlagIcon className="mr-2 h-4 w-4" />
+                            <Badge variant="outline" className="flex items-center px-4 py-2 rounded-lg cursor-pointer">
+                                <FlagIcon className="mr-2 h-4 w-4 text-orange-500" />
                                 U.S History
                             </Badge>
                         </div>
                     </main>
                     <footer className="mt-8 text-sm text-gray-600">
                         Fully open source!{" "}
-                        <a href="#" className="text-blue-500 underline">
+                        <a href="#" className="text-orange-500 underline">
                             Star it on github.
                         </a>
                     </footer>
@@ -82,10 +85,10 @@ export function LandingPage() {
                         alt="Hero Image"
                         width={800}
                         height={600}
-                        className="w-full h-full object-cover rounded-lg shadow-lg"
+                        className="w-full h-full object-cover rounded-lg shadow-lg z-10 relative"
                         style={{ aspectRatio: "800/600", objectFit: "cover" }} />
                     <div
-                        className="absolute -bottom-12 -right-12 w-3/4 h-3/4 bg-primary rounded-lg shadow-lg" />
+                        className="absolute -bottom-12 -right-12 w-3/4 h-3/4 rounded-lg shadow-lg  bg-orange-500" />
                 </div>
             </div>
 
@@ -95,17 +98,17 @@ export function LandingPage() {
             <section
                 className="container grid grid-cols-1 md:grid-cols-3 gap-8 py-12 md:py-24">
                 <div className="flex flex-col items-center justify-center text-center">
-                    <LightbulbIcon className="w-12 h-12 text-primary mb-4" />
+                    <LightbulbIcon className="w-12 h-12  mb-4 text-orange-500" />
                     <h3 className="text-2xl font-bold mb-2">Personalized Tutoring</h3>
                     <p className="text-gray-600">Get a tutor tailored to your specific needs and learning style.</p>
                 </div>
                 <div className="flex flex-col items-center justify-center text-center">
-                    <RocketIcon className="w-12 h-12 text-primary mb-4" />
+                    <RocketIcon className="w-12 h-12 mb-4 text-orange-500" />
                     <h3 className="text-2xl font-bold mb-2">Accelerated Learning</h3>
                     <p className="text-gray-600">Learn faster and more efficiently with our expert tutors.</p>
                 </div>
                 <div className="flex flex-col items-center justify-center text-center">
-                    <SmileIcon className="w-12 h-12 text-primary mb-4" />
+                    <SmileIcon className="w-12 h-12 mb-4 text-orange-500" />
                     <h3 className="text-2xl font-bold mb-2">Enjoyable Experience</h3>
                     <p className="text-gray-600">Make learning fun and engaging with our interactive lessons.</p>
                 </div>
