@@ -1,18 +1,19 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/kTEICDqXa46
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
-import Link from "next/link"
 
-export function ChatInterface() {
+export function ChatInterface(props) {
+
+    const onSubmit = () => {
+        const latestMessages = [...props.messages, { role: "user", content: props.userMessage }]
+        props.setUserMessage("");
+        props.setMessages(latestMessages);
+        props.handleSubmit(latestMessages);
+    }
     return (
         <>
-            <div className="sticky top-0 z-10 flex h-14 items-center justify-center	 border-b bg-background px-4">
+            <div className="sticky top-0 z-10 flex h-14 items-center justify-center border-b bg-background px-4">
                 <div className="flex items-center justify-center gap-2">
                     <Avatar className="w-7 h-7">
                         <AvatarImage src="/logo.png" alt="logo" />
@@ -21,106 +22,106 @@ export function ChatInterface() {
                     <div className="font-medium text-orange-500">GemmaTutor</div>
                 </div>
             </div>
-            <div className="grid grid-cols-[1fr_300px] min-h-screen w-full bg-background">
-                <div className="flex flex-col border-r">
-                    <div className="flex-1 overflow-auto">
-                        <div className="grid gap-4 p-4">
-                            <div className="flex items-center mb-2">
-                                <span className="text-sm font-medium text-muted-foreground">Topic: Machine Learning</span>
-                            </div>
-                            <div className="bg-background shadow-md rounded-lg p-4 border">
-                                <div className="flex items-start gap-4">
-                                    <Avatar className="w-6 h-6">
-                                        <AvatarImage src="/logo.png" alt="User Avatar" />
-                                        <AvatarFallback>AI</AvatarFallback>
-                                    </Avatar>
-                                    <div className="grid gap-1 rounded-lg">
-                                        <div className="font-medium">GemmaTutor</div>
-                                        <div>
-                                            Hey there! I'm looking for some resources to help me understand the latest React features. Do you
-                                            have any recommendations?
-                                        </div>
+            <div className="flex flex-row h-[calc(100vh-56px)]"> {/* Adjusted height to fit the viewport height minus the header */}
+                <div className="flex flex-row w-full">
+                    <div className="flex flex-col border-r h-full w-full max-w-[calc(100%_-_300px)]"> {/* Adjust width and height for messages */}
+                        <div className="flex-1 overflow-hidden flex flex-col">
+                            <div className="flex-1 overflow-y-auto p-4">
+                                <div className="grid gap-4">
+                                    <div className="flex items-center mb-2">
+                                        <span className="text-sm font-medium text-muted-foreground">Topic: Machine Learning</span>
                                     </div>
+
+                                    {/* messages  */}
+                                    <div className="bg-background shadow-md rounded-lg p-4 border overflow-y-auto h-full">
+                                        {props.messages.length > 0 &&
+                                            props.messages.map((message, index) => (
+                                                <div key={index} className="mb-4">
+                                                    {/* Assistant Message */}
+                                                    {message.role === 'assistant' && (
+                                                        <div className="flex items-start gap-4">
+                                                            <Avatar className="w-6 h-6">
+                                                                <AvatarImage src="/logo.png" alt="Assistant Avatar" />
+                                                                <AvatarFallback>AI</AvatarFallback>
+                                                            </Avatar>
+                                                            <div className="grid gap-1 rounded-lg">
+                                                                <div className="font-medium">GemmaTutor</div>
+                                                                <div>{message.content}</div>
+                                                            </div>
+                                                        </div>
+                                                    )}
+                                                    {/* User Message */}
+                                                    {message.role === 'user' && (
+                                                        <div className="flex items-start gap-4 justify-end">
+                                                            <div className="grid gap-1 rounded-lg bg-orange-500 p-3 text-primary-foreground">
+                                                                <div className="font-medium">You</div>
+                                                                <div>{message.content}</div>
+                                                            </div>
+                                                            <Avatar className="w-8 h-8 border">
+                                                                <AvatarImage src="/placeholder-user.jpg" alt="User Avatar" />
+                                                                <AvatarFallback>YO</AvatarFallback>
+                                                            </Avatar>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            ))}
+                                    </div>
+
                                 </div>
-                                <div className="flex items-start gap-4 justify-end">
-                                    <div className="grid gap-1 rounded-lg bg-orange-500 p-3 text-primary-foreground">
-                                        <div className="font-medium">You</div>
-                                        <div>Sure, I'd be happy to share some helpful resources! Let me put together a list for you.</div>
-                                    </div>
-                                    <Avatar className="w-8 h-8 border">
-                                        <AvatarImage src="/placeholder-user.jpg" alt="User Avatar" />
-                                        <AvatarFallback>YO</AvatarFallback>
-                                    </Avatar>
+                            </div>
+
+                            {/* submit button  */}
+                            <div className="border-t bg-background px-4 py-2">
+                                <div className="relative">
+                                    <Textarea
+                                        placeholder="Type your query..."
+                                        name="message"
+                                        id="message"
+                                        rows={1}
+                                        value={props.userMessage}
+                                        onChange={(event) => { props.setUserMessage(event.target.value) }}
+                                        className="min-h-[48px] rounded-2xl resize-none p-4 border border-neutral-400 shadow-sm pr-16"
+                                    />
+                                    <Button type="submit" size="icon" className="absolute w-8 h-8 top-3 right-3 bg-orange-500" onClick={onSubmit}>
+                                        <ArrowUpIcon className="w-4 h-4" />
+                                        <span className="sr-only">Send</span>
+                                    </Button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="sticky bottom-0 z-10 border-t bg-background px-4 py-2">
-                        <div className="relative">
-                            <Textarea
-                                placeholder="Type your query..."
-                                name="message"
-                                id="message"
-                                rows={1}
-                                className="min-h-[48px] rounded-2xl resize-none p-4 border border-neutral-400 shadow-sm pr-16"
-                            />
-                            <Button type="submit" size="icon" className="absolute w-8 h-8 top-3 right-3 bg-orange-500">
-                                <ArrowUpIcon className="w-4 h-4" />
-                                <span className="sr-only">Send</span>
-                            </Button>
+
+                    {/* sources  */}
+                    <div className="flex flex-col border-l h-full w-[300px] overflow-y-auto">
+                        <div className="flex h-14 items-center justify-between bg-background px-4">
+                            <div className="font-medium">Sources</div>
                         </div>
-                    </div>
-                </div>
-                <div className="flex flex-col border-l">
-                    <div className="sticky top-0 z-10 flex h-14 items-center justify-between bg-background px-4">
-                        <div className="font-medium">Sources</div>
-                    </div>
-                    <div className="flex-1 overflow-auto">
-                        <div className="grid gap-4 p-4">
-                            <Card className="bg-background shadow-lg">
-                                <CardHeader className="p-2">
-                                    <div className="flex items-center gap-4">
-                                        <div className="bg-muted rounded-md p-3 flex items-center justify-center">
-                                            <FileTextIcon className="h-4 w-4" />
-                                        </div>
-                                        <div>
-                                            <CardTitle className="text-md">React Hooks</CardTitle>
-                                            <CardDescription>Lorem ipsum</CardDescription>
-                                        </div>
-                                    </div>
-                                </CardHeader>
-                            </Card>
-                            <Card className="bg-background shadow-lg">
-                                <CardHeader className="p-2">
-                                    <div className="flex items-center gap-4">
-                                        <div className="bg-muted rounded-md p-3 flex items-center justify-center">
-                                            <FileTextIcon className="h-4 w-4" />
-                                        </div>
-                                        <div>
-                                            <CardTitle className="text-md">React Hooks</CardTitle>
-                                            <CardDescription>Lorem ipsum</CardDescription>
-                                        </div>
-                                    </div>
-                                </CardHeader>
-                            </Card>
-                            <Card className="bg-background shadow-lg">
-                                <CardHeader className="p-2">
-                                    <div className="flex items-center gap-4">
-                                        <div className="bg-muted rounded-md p-3 flex items-center justify-center">
-                                            <FileTextIcon className="h-4 w-4" />
-                                        </div>
-                                        <div>
-                                            <CardTitle className="text-md">React Hooks</CardTitle>
-                                            <CardDescription>Lorem ipsum</CardDescription>
-                                        </div>
-                                    </div>
-                                </CardHeader>
-                            </Card>
+                        <div className="flex-1 overflow-y-auto p-4">
+                            <div className="grid gap-4">
+                                {Array.from({ length: 12 }).map((_, index) => (
+                                    <Card key={index} className="bg-background shadow-lg">
+                                        <CardHeader className="p-2">
+                                            <div className="flex items-center gap-4">
+                                                <div className="bg-muted rounded-md p-3 flex items-center justify-center">
+                                                    <FileTextIcon className="h-4 w-4" />
+                                                </div>
+                                                <div>
+                                                    <CardTitle className="text-md">React Hooks</CardTitle>
+                                                    <CardDescription>Lorem ipsum</CardDescription>
+                                                </div>
+                                            </div>
+                                        </CardHeader>
+                                    </Card>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </>
+
+
+
     )
 }
 
