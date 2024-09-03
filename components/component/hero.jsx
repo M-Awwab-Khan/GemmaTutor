@@ -32,8 +32,18 @@ export function Hero(props) {
                             a personalized tutor tailored to you!
                         </p>
                         <div className="flex items-center justify-center w-full mt-5 space-x-4">
-                            <Input type="text" placeholder="Teach me about..." className="w-full max-w-sm" value={props.topic} onChange={(event) => { props.setTopic(event.target.value) }} />
-                            <Select value={props.ageGroup} onValueChange={(value) => { props.setAgeGroup(value) }}>
+                            <Input
+                                type="text"
+                                placeholder="Teach me about..."
+                                className="w-full max-w-sm"
+                                value={props.topic}
+                                onChange={(event) => { props.setTopic(event.target.value) }}
+                            />
+
+                            <Select
+                                value={props.ageGroup}
+                                onValueChange={(value) => { props.setAgeGroup(value) }}
+                            >
                                 <SelectTrigger id="education-level" className="w-40">
                                     <SelectValue placeholder="Middle School" />
                                 </SelectTrigger>
@@ -43,9 +53,15 @@ export function Hero(props) {
                                     <SelectItem value="college">College</SelectItem>
                                 </SelectContent>
                             </Select>
-                            <Button className="ml-2 bg-orange-500" onClick={() => { props.setShowResult(true) }}>
+
+                            <Button
+                                className="ml-2 bg-orange-500"
+                                onClick={() => { props.handleInitialChat() }}
+                                disabled={!props.topic} // Disable button if topic is empty
+                            >
                                 <ArrowRightIcon className="h-5 w-5" />
                             </Button>
+
                         </div>
                         <div
                             className="flex flex-wrap w-full mt-8 space-x-2">

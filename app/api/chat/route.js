@@ -13,7 +13,7 @@ export async function POST(req) {
         start(controller) {
             // Make a request to OpenAI with streaming enabled
             openai.chat.completions.create({
-                model: "google/gemma-2-27b-it",
+                model: "meta/llama-3.1-70b-instruct",
                 messages: messages,
                 stream: true
             }).then(async (response) => {

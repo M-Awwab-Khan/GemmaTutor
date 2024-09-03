@@ -2,6 +2,7 @@
 import { useState, useEffect, useSyncExternalStore } from "react"
 import { Hero } from "@/components/component/hero";
 import { ChatInterface } from "@/components/component/chat-interface";
+import { getSystemPrompt } from "./utils/utils";
 
 export default function Home() {
     const [topic, setTopic] = useState('');
@@ -12,6 +13,20 @@ export default function Home() {
     const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState(false);
     const [userMessage, setUserMessage] = useState('');
+
+    const handleInitialChat = async () => {
+        setShowResult(true);
+        setLoading(true);
+        setUserMessage('');
+
+        const initialMessage = [
+            { role: "system", content: getSystemPrompt(ageGroup) },
+            { role: "user", content: `${topic}` },
+        ];
+        setMessages(initialMessage);
+        await handleSubmit(initialMessage);
+
+    }
 
     const handleSubmit = async (messages) => {
         const responseStream = await fetch('/api/chat', {
@@ -62,6 +77,7 @@ export default function Home() {
             ageGroup={ageGroup}
             setAgeGroup={setAgeGroup}
             setShowResult={setShowResult}
+            handleInitialChat={handleInitialChat}
         />
     ) : (
         <ChatInterface

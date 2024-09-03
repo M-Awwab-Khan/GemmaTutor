@@ -2,6 +2,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
+import ReactMarkdown from "react-markdown"
 
 export function ChatInterface(props) {
 
@@ -29,24 +30,24 @@ export function ChatInterface(props) {
                             <div className="flex-1 overflow-y-auto p-4">
                                 <div className="grid gap-4">
                                     <div className="flex items-center mb-2">
-                                        <span className="text-sm font-medium text-muted-foreground">Topic: Machine Learning</span>
+                                        <span className="text-sm font-medium text-muted-foreground">Topic: {props.topic}</span>
                                     </div>
 
                                     {/* messages  */}
-                                    <div className="bg-background shadow-md rounded-lg p-4 border overflow-y-auto h-full">
-                                        {props.messages.length > 0 &&
-                                            props.messages.map((message, index) => (
+                                    <div className="bg-background shadow-md rounded-lg p-4 border overflow-y-auto h-full prose-sm lg:prose lg:max-w-full">
+                                        {props.messages.length > 2 &&
+                                            props.messages.slice(2).map((message, index) => (
                                                 <div key={index} className="mb-4">
                                                     {/* Assistant Message */}
                                                     {message.role === 'assistant' && (
                                                         <div className="flex items-start gap-4">
-                                                            <Avatar className="w-6 h-6">
+                                                            <Avatar className="w-6 h-6 not-prose">
                                                                 <AvatarImage src="/logo.png" alt="Assistant Avatar" />
                                                                 <AvatarFallback>AI</AvatarFallback>
                                                             </Avatar>
                                                             <div className="grid gap-1 rounded-lg">
                                                                 <div className="font-medium">GemmaTutor</div>
-                                                                <div>{message.content}</div>
+                                                                <ReactMarkdown>{message.content}</ReactMarkdown>
                                                             </div>
                                                         </div>
                                                     )}
