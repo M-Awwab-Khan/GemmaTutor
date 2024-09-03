@@ -65,21 +65,21 @@ export function Hero(props) {
                         </div>
                         <div
                             className="flex flex-wrap w-full mt-8 space-x-2">
-                            <Badge variant="outline" className="flex items-center px-4 py-2 rounded-lg cursor-pointer">
+                            <Badge variant="outline" className="flex items-center px-4 py-2 rounded-lg cursor-pointer" onClick={() => props.setTopic('Basketball')}>
                                 <ShoppingBasketIcon className="mr-2 h-4 w-4 text-orange-500" />
                                 Basketball
                             </Badge>
-                            <Badge variant="outline" className="flex items-center px-4 py-2 rounded-lg cursor-pointer">
+                            <Badge variant="outline" className="flex items-center px-4 py-2 rounded-lg cursor-pointer" onClick={() => props.setTopic('Machine Learning')}>
                                 <BrainIcon className="mr-2 h-4 w-4 text-orange-500" />
                                 Machine Learning
                             </Badge>
-                            <Badge variant="outline" className="flex items-center px-4 py-2 rounded-lg cursor-pointer">
+                            <Badge variant="outline" className="flex items-center px-4 py-2 rounded-lg cursor-pointer" onClick={() => props.setTopic('Personal Finance')}>
                                 <DollarSignIcon className="mr-2 h-4 w-4 text-orange-500" />
                                 Personal Finance
                             </Badge>
-                            <Badge variant="outline" className="flex items-center px-4 py-2 rounded-lg cursor-pointer">
+                            <Badge variant="outline" className="flex items-center px-4 py-2 rounded-lg cursor-pointer" onClick={() => props.setTopic('Pakistan History')}>
                                 <FlagIcon className="mr-2 h-4 w-4 text-orange-500" />
-                                U.S History
+                                Pakistan History
                             </Badge>
                         </div>
                     </main>
@@ -101,13 +101,13 @@ export function Hero(props) {
                     <div
                         className="absolute -bottom-12 -right-12 w-3/4 h-3/4 rounded-lg shadow-lg  bg-orange-500" />
                 </div>
-            </div>
+            </div >
 
 
 
             {/* right column */}
-            <section
-                className="container grid grid-cols-1 md:grid-cols-3 gap-8 py-12 md:py-24">
+            < section
+                className="container grid grid-cols-1 md:grid-cols-3 gap-8 py-12 md:py-24" >
                 <div className="flex flex-col items-center justify-center text-center">
                     <LightbulbIcon className="w-12 h-12  mb-4 text-orange-500" />
                     <h3 className="text-2xl font-bold mb-2">Personalized Tutoring</h3>
@@ -123,8 +123,8 @@ export function Hero(props) {
                     <h3 className="text-2xl font-bold mb-2">Enjoyable Experience</h3>
                     <p className="text-gray-600">Make learning fun and engaging with our interactive lessons.</p>
                 </div>
-            </section>
-        </div>
+            </section >
+        </div >
     )
 }
 

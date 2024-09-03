@@ -24,8 +24,8 @@ export default function Home() {
             { role: "user", content: `${topic}` },
         ];
         setMessages(initialMessage);
-        await handleSubmit(initialMessage);
         await fetchSources();
+        await handleSubmit(initialMessage);
 
     }
 

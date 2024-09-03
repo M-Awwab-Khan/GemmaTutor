@@ -13,11 +13,9 @@ export function Sources(props) {
                             <CardHeader className="p-2">
                                 <div className="flex items-center gap-4">
                                     <div className="bg-muted rounded-md p-2 flex items-center justify-center">
-                                        <Image
-                                            unoptimized
+                                        <img
                                             src={`https://www.google.com/s2/favicons?domain=${source.url}&sz=128`}
                                             alt={source.url}
-                                            className="rounded-full p-1"
                                             width={36}
                                             height={36}
                                         />
