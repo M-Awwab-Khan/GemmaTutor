@@ -1,8 +1,8 @@
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
 import ReactMarkdown from "react-markdown"
+import { Sources } from "./sources"
 
 export function ChatInterface(props) {
 
@@ -25,7 +25,7 @@ export function ChatInterface(props) {
             </div>
             <div className="flex flex-row h-[calc(100vh-56px)]"> {/* Adjusted height to fit the viewport height minus the header */}
                 <div className="flex flex-row w-full">
-                    <div className="flex flex-col border-r h-full w-full max-w-[calc(100%_-_300px)]"> {/* Adjust width and height for messages */}
+                    <div className="flex flex-col border-r h-full w-full max-w-[calc(100%_-_400px)]"> {/* Adjust width and height for messages */}
                         <div className="flex-1 overflow-hidden flex flex-col">
                             <div className="flex-1 overflow-y-auto p-4">
                                 <div className="grid gap-4">
@@ -46,7 +46,6 @@ export function ChatInterface(props) {
                                                                 <AvatarFallback>AI</AvatarFallback>
                                                             </Avatar>
                                                             <div className="grid gap-1 rounded-lg">
-                                                                <div className="font-medium">GemmaTutor</div>
                                                                 <ReactMarkdown>{message.content}</ReactMarkdown>
                                                             </div>
                                                         </div>
@@ -93,30 +92,7 @@ export function ChatInterface(props) {
                     </div>
 
                     {/* sources  */}
-                    <div className="flex flex-col border-l h-full w-[300px] overflow-y-auto">
-                        <div className="flex h-14 items-center justify-between bg-background px-4">
-                            <div className="font-medium">Sources</div>
-                        </div>
-                        <div className="flex-1 overflow-y-auto p-4">
-                            <div className="grid gap-4">
-                                {Array.from({ length: 12 }).map((_, index) => (
-                                    <Card key={index} className="bg-background shadow-lg">
-                                        <CardHeader className="p-2">
-                                            <div className="flex items-center gap-4">
-                                                <div className="bg-muted rounded-md p-3 flex items-center justify-center">
-                                                    <FileTextIcon className="h-4 w-4" />
-                                                </div>
-                                                <div>
-                                                    <CardTitle className="text-md">React Hooks</CardTitle>
-                                                    <CardDescription>Lorem ipsum</CardDescription>
-                                                </div>
-                                            </div>
-                                        </CardHeader>
-                                    </Card>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
+                    <Sources sources={props.sources} isLoadingSources={props.isLoadingSources} />
                 </div>
             </div>
         </>
@@ -142,30 +118,6 @@ function ArrowUpIcon(props) {
         >
             <path d="m5 12 7-7 7 7" />
             <path d="M12 19V5" />
-        </svg>
-    )
-}
-
-
-function FileTextIcon(props) {
-    return (
-        <svg
-            {...props}
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-        >
-            <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
-            <path d="M14 2v4a2 2 0 0 0 2 2h4" />
-            <path d="M10 9H8" />
-            <path d="M16 13H8" />
-            <path d="M16 17H8" />
         </svg>
     )
 }

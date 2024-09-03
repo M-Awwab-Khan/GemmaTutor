@@ -25,7 +25,25 @@ export default function Home() {
         ];
         setMessages(initialMessage);
         await handleSubmit(initialMessage);
+        await fetchSources();
 
+    }
+
+    const fetchSources = async () => {
+        setIsLoadingSources(true);
+        let sourcesResponse = await fetch("/api/sources", {
+            method: "POST",
+            body: JSON.stringify({ query: topic }),
+        });
+        let sources;
+        if (sourcesResponse.ok) {
+            sources = await sourcesResponse.json();
+
+            setSources(sources);
+        } else {
+            setSources([]);
+        }
+        setIsLoadingSources(false);
     }
 
     const handleSubmit = async (messages) => {
@@ -88,6 +106,8 @@ export default function Home() {
             setMessages={setMessages}
             topic={topic}
             handleSubmit={handleSubmit}
+            sources={sources}
+            isLoadingSources={isLoadingSources}
         />
     );
 
