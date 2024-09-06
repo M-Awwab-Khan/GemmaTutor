@@ -19,14 +19,7 @@ export default function Home() {
         setLoading(true);
         setUserMessage('');
 
-        const initialMessage = [
-            { role: "system", content: getSystemPrompt(ageGroup) },
-            { role: "user", content: `${topic}` },
-        ];
-        setMessages(initialMessage);
         await fetchSources();
-        await handleSubmit(initialMessage);
-
     }
 
     const fetchSources = async () => {
@@ -44,6 +37,22 @@ export default function Home() {
             setSources([]);
         }
         setIsLoadingSources(false);
+
+        const parsedSourcesRes = await fetch("/api/parse-sources", {
+            method: "POST",
+            body: JSON.stringify({ sources }),
+        });
+        let parsedSources;
+        if (parsedSourcesRes.ok) {
+            parsedSources = await parsedSourcesRes.json();
+        }
+
+        const initialMessage = [
+            { role: "system", content: getSystemPrompt(ageGroup, parsedSources) },
+            { role: "user", content: `${topic}` },
+        ];
+        setMessages(initialMessage);
+        await handleSubmit(initialMessage);
     }
 
     const handleSubmit = async (messages) => {

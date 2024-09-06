@@ -52,9 +52,8 @@ export function ChatInterface(props) {
                                                     )}
                                                     {/* User Message */}
                                                     {message.role === 'user' && (
-                                                        <div className="flex items-start gap-4 justify-end">
+                                                        <div className="flex items-start gap-4 justify-end mb-8">
                                                             <div className="grid gap-1 rounded-lg bg-orange-500 p-3 text-primary-foreground">
-                                                                <div className="font-medium">You</div>
                                                                 <div>{message.content}</div>
                                                             </div>
                                                             <Avatar className="w-8 h-8 border">
@@ -70,7 +69,7 @@ export function ChatInterface(props) {
                                 </div>
                             </div>
 
-                            {/* submit button  */}
+                            {/* submit button */}
                             <div className="border-t bg-background px-4 py-2">
                                 <div className="relative">
                                     <Textarea
@@ -80,6 +79,12 @@ export function ChatInterface(props) {
                                         rows={1}
                                         value={props.userMessage}
                                         onChange={(event) => { props.setUserMessage(event.target.value) }}
+                                        onKeyDown={(event) => {
+                                            if (event.key === 'Enter' && !event.shiftKey && props.userMessage.trim() !== "") {
+                                                event.preventDefault(); // Prevents a new line from being created
+                                                onSubmit();
+                                            }
+                                        }}
                                         className="min-h-[48px] rounded-2xl resize-none p-4 border border-neutral-400 shadow-sm pr-16"
                                     />
                                     <Button type="submit" size="icon" className="absolute w-8 h-8 top-3 right-3 bg-orange-500" onClick={onSubmit}>
@@ -88,6 +93,7 @@ export function ChatInterface(props) {
                                     </Button>
                                 </div>
                             </div>
+
                         </div>
                     </div>
 
