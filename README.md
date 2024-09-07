@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# GemmaTutor
 
-## Getting Started
+GemmaTutor is an AI-powered tutor application designed to assist users in learning complex topics through interactive question-answer sessions. Leveraging the power of modern natural language processing, it provides insightful responses tailored to the user’s age group and level of understanding.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **AI Tutor**: Provides personalized learning experiences by answering questions on a variety of topics.
+- **Real-time Chat Interface**: Allows users to interact with the tutor through a clean, responsive chat interface.
+- **Topic Selection**: Users can input their desired topic, and the tutor will provide insights and knowledge accordingly.
+- **Age Group Customization**: Choose between different education levels (Middle School, High School, College) to receive age-appropriate explanations.
+- **Sources Section**: Displays relevant sources for the topic being discussed, allowing users to dive deeper into the subject matter.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Technologies Used
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Next.js**: For building a responsive and dynamic frontend.
+- **React.js**: Component-based architecture for UI.
+- **Serper API**: Used to fetch relevant search results from Google.
+- **Mozilla Readability**: Extracts clean, readable content from web pages.
+- **Tailwind CSS**: For creating a modern and sleek UI.
+- **Zod**: For schema validation (optional as of recent refactoring).
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Installation
 
-## Learn More
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/M-Awwab-Khan/GemmaTutor.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd GemmaTutor
+   ```
+3. Install the dependencies:
+   ```bash
+   npm install
+   ```
+4. Add your Serper API key in the environment variables.
+5. Run the development server:
+   ```bash
+   npm run dev
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+## How to Use
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Input a Topic**: Start by entering the topic you wish to learn about in the input field.
+2. **Select Age Group**: Choose the appropriate age group (Middle School, High School, College) for the level of explanation.
+3. **Interact with the Tutor**: Ask questions, and GemmaTutor will provide answers based on your selected topic.
+4. **View Sources**: Explore additional learning resources recommended by the tutor.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Contributing
 
-## Deploy on Vercel
+Contributions are welcome! If you'd like to contribute to this project, feel free to submit a pull request or open an issue.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
